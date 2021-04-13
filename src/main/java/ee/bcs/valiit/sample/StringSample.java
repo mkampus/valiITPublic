@@ -1,7 +1,11 @@
 package ee.bcs.valiit.sample;
 
+import java.util.Scanner;
+
 public class StringSample {
     public static void main(String[] args) {
+
+
         String a = "Hello";
         String b = "World";
         String c = a + " " + b;

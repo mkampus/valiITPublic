@@ -4,6 +4,8 @@ public class Lesson2c {
 
     public static void main(String[] args) {
 
+        System.out.println(Lesson2.fibonacci(5));
+
     }
 
     // TODO
@@ -27,7 +29,22 @@ public class Lesson2c {
     // kutsuge iga väärtuse korral välja meetodit getSeqLength
     // salvestage maha kõige suurem ja funktsiooni lõpus tagastage see
     public static int sequence3n(int x, int y) {
-        return 0;
+
+        int largestsequence = 0;
+        int tempx = x;
+        int counter = 0;
+        while (tempx != y){
+            counter = getSeqLength(tempx);
+            if (largestsequence < counter){
+                largestsequence = counter;
+            }
+            tempx++;
+        }
+
+//        for (int j = x; x != y; j++){
+//            largestsequence = getSeqLength(x);
+//        }
+        return largestsequence;
     }
 
     // TODO 2
@@ -35,17 +52,28 @@ public class Lesson2c {
     // x = 2 -> 2
     // kutsuge välja meetodit nextElement nii kaua kuni vastus tuleb 1
     // tagastage korduste arv + 1
-    public static int getSeqLength(int x){
-        return 0;
+    public static int getSeqLength(int x) {
+        int counter = 1;
+        while ( x >  1) {
+            x = nextElement(x);
+            counter++;
+        }
+        return counter;
     }
+
 
     // TODO 1
     // x = 1 -> 4
     // x = 2 -> 1
     // x = 3 -> 10
-    public static int nextElement(int x){
-        // TODO tagasta sequence järgmine element
-        return 0;
+    public static int nextElement(int x) {
+        if (x % 2 == 0) {
+            x = x / 2;
+        } else {
+            x = (x * 3) + 1;
+        }
+        return x;
     }
+    // TODO tagasta sequence järgmine element
 
 }

@@ -8,7 +8,7 @@ public class ListMapSamples {
 
         List<Integer> list = new ArrayList<>();
         list.add(3);
-        list.add(0, 4);
+        list.add(3,4);
         list.add(0, 1);
         list.set(0, 2);
         list.add(5);
