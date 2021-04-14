@@ -1,9 +1,4 @@
-package ee.bcs.valiit.codewars;
-
-import org.yaml.snakeyaml.util.ArrayUtils;
-
-import java.util.Arrays;
-import java.util.Collections;
+package ee.bcs.valiit.codewarsandbackups;
 
 class ZywOo {
 
@@ -11,7 +6,14 @@ class ZywOo {
 
         System.out.print(sumOfDifferences(new int[]{15, 4, 8, 3, 1, 16, 11, 2, 17, 10, 14}));
 
+
+
+
+
     }
+
+
+
 
     public static int sumOfDifferences(int[] arr) { //1 2 10
 

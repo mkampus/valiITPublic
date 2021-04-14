@@ -87,9 +87,6 @@ public class Lesson2b {
         for (int i = 0; i < n; i++){
             returnArray[i] = 3;
         }
-
-
-
         return returnArray;
 
 
