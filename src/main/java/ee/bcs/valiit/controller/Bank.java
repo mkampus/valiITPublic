@@ -1,8 +1,6 @@
 package ee.bcs.valiit.controller;
 
 
-import ee.bcs.valiit.tasks.Employee;
-import ee.bcs.valiit.tasks.Lesson4;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -10,22 +8,24 @@ import java.util.HashMap;
 @RestController
 
 public class Bank {
-    public static HashMap<String, Double> accountBalanceMap = new HashMap<>();
+    public static HashMap<String, Account> accountBalanceMap = new HashMap<>();
     /// peab lisama getmapping 0 main menyy pmst, siis vahetad url et mida soovid teha
 
 
-    @GetMapping("createaccount/{accountNumber}")
-    public static String createAccount(@PathVariable("accountNumber") String accountNumber) {
+    @GetMapping("createaccount/{accountNumber}/{balance}/{name}")
+    public static String createAccount(@PathVariable("accountNumber") String accountNumber,
+                                       @PathVariable("balance") Double balance,
+                                       @PathVariable("name") String ownerName) {
+        Account account = new Account();
+        account.setAccountNumber(accountNumber);
+        account.setBalance(balance);
+        account.setOwnerName(ownerName);
+        account.setLocked(false);
+
         accountBalanceMap.put(accountNumber, 0.0);
         return "New account added w balance =  " + accountBalanceMap.get(accountNumber) +
-                "Account number is: " + accountNumber;
+                "Account number is: " + accountNumber; //also locked = false
     }
-
-//    @GetMapping("sample/employees/{a}")
-//    public Employee rosterGet(@PathVariable ("a") int a){
-//        Employee tagastus = employeeList.get(a);
-//        return tagastus;
-//    }
 
     @GetMapping("getbalance/{accountNumber}")
     public static Double getBalance(@PathVariable("accountNumber") String accountNumber) {
@@ -45,12 +45,6 @@ public class Bank {
 //        String putDeposit = "Your balance is: " + accountBalanceMap.get(accountNumber);
     }
 
-
-//    /// PUT TO LIST
-//    @PutMapping("sample/employees/{a}")
-//    public void rosterPut(@RequestBody Employee employeeData, @PathVariable("a") int a) {
-//        employeeList.set(a, employeeData);
-//    }
 
 // TODO 4
 // Add command: "withdrawMoney ${accountNr} ${amount}
@@ -100,5 +94,13 @@ public class Bank {
         }
     }
 
+    //
+
+    @PutMapping("bank/account/{accountnumber}/lock") {
+
+    }
+
 
 }
+
+// teha map strig accountist, mitte double.
