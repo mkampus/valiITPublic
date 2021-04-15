@@ -4,6 +4,15 @@ public class BankData {
 
     private String AccountNumber;
     private Double balance;
+    private Double deposit;
+
+    public Double getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(Double deposit) {
+        this.deposit = deposit;
+    }
 
     public String getAccountNumber() {
         return AccountNumber;
