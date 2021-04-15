@@ -32,7 +32,7 @@ public class Bank {
         return accountBalanceMap.get(accountNumber);
     }
 
-    @PutMapping("deposit/{accountNumber}/{depositAmount}")
+    @GetMapping("deposit/{accountNumber}/{depositAmount}")
     public static String putDepositWeb(@PathVariable("accountNumber") String accountNumber,
                                        @PathVariable("depositAmount") double deposit) {
 
