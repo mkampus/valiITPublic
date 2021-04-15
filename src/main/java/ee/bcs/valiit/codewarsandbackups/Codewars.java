@@ -5,11 +5,6 @@ class ZywOo {
     public static void main(String[] args) {
 
         System.out.print(sumOfDifferences(new int[]{15, 4, 8, 3, 1, 16, 11, 2, 17, 10, 14}));
-
-
-
-
-
     }
 
 
