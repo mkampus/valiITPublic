@@ -79,35 +79,41 @@ public class Bank {
     }
 
 
-//    // TODO 5
-//// Add command: "transfer ${fromAccount} ${toAccount} ${amount}
-//// This has to remove specified amount from fromAccount and add it to toAccount
-//// Your application needs to check that toAccount is positive
-//// And from account has enough money to do that transaction
-//    @GetMapping("transfer/{fromAccount}/{amount}/{toAccount}")
-//    public String TransferMoney(@PathVariable("fromAccount") String accountNumber,
-//                                @PathVariable("amount") double amountToTransfer,
-//                                @PathVariable("toAccount") String toAccount) {
-//        double fromAccountBalance = getBalance(accountNumber);
-//        double toAccountBalance = getBalance(toAccount);
-//        if (!(accountBalanceMap.containsKey(toAccount))) {
-//            return "No account found!";
-//        } else if ((toAccountBalance < 0)) {
-//            return "You  cannot transfer to an account that is in the negative!";
-//
-//        } else if (amountToTransfer <= 0) {
-//            return "You cannot transfer less or equal to 0.";
-//        } else if ((fromAccountBalance - amountToTransfer) < 0) {
-//            return "Your account that you are transferring from cannot be negative!";
-//        } else {
-//            double newBalance = fromAccountBalance - amountToTransfer;
-//            double newBalanceToAccount = toAccountBalance + amountToTransfer;
-//            accountBalanceMap.replace(accountNumber, newBalance);
-//            accountBalanceMap.replace(toAccount, newBalanceToAccount);
-//            return "Your account nr " + accountNumber + " now holds " + newBalance +
-//                    "Your account nr " + toAccount + " now holds " + newBalanceToAccount;
-//        }
-//    }
+    // TODO 5
+// Add command: "transfer ${fromAccount} ${toAccount} ${amount}
+// This has to remove specified amount from fromAccount and add it to toAccount
+// Your application needs to check that toAccount is positive
+// And from account has enough money to do that transaction
+    @GetMapping("transfer/{fromAccount}/{amount}/{toAccount}")
+    public String TransferMoney(@PathVariable("fromAccount") String accountNumber,
+                                @PathVariable("amount") double amountToTransfer,
+                                @PathVariable("toAccount") String toAccount) {
+        AccountData transferFromRequest = accountBalanceMap.get(accountNumber);
+        AccountData transferToRequest = accountBalanceMap.get(toAccount);
+        if (transferFromRequest.isLocked()) {
+            return "The originating account is locked!";
+        }
+        if (transferToRequest.isLocked()) {
+            return "The target account is locked!";
+        }
+        if (!(accountBalanceMap.containsKey(toAccount))) {
+            return "No account found!";
+        } else if ((transferToRequest.getBalance() < 0)) {
+            return "You  cannot transfer to an account that is in the negative!";
+        } else if (amountToTransfer <= 0) {
+            return "You cannot transfer less or equal to 0.";
+
+        } else if ((transferFromRequest.getBalance() - amountToTransfer) < 0) {
+            return "Your account that you are transferring from cannot be negative!";
+        } else {
+            double newBalance = transferFromRequest.getBalance() - amountToTransfer;
+            double newBalanceToAccount = transferToRequest.getBalance() + amountToTransfer;
+            transferFromRequest.setBalance(newBalance);
+            transferToRequest.setBalance(newBalanceToAccount);
+            return "Your account nr " + accountNumber + " now holds " + newBalance +
+                    "Your account nr " + toAccount + " now holds " + newBalanceToAccount;
+        }
+    }
 //
 //    //
 //
@@ -118,4 +124,3 @@ public class Bank {
 
 }
 
-// teha map strig accountist, mitte double.
