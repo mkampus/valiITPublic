@@ -1,6 +1,6 @@
 package ee.bcs.valiit.controller;
 
-public class Account {
+public class AccountData {
     private String ownerName;
     private String accountNumber;
     private Double balance;
