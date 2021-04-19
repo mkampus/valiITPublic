@@ -10,10 +10,10 @@ public class CodeWars {
 
     public static PawnDistance redKnight(int knight, long pawn) {
 
-        long pawnPosition = pawn;
+        long PawnDistance = pawn;
         int knightSquareVertical = knight;
         int knightSquareHorizontal = 0;
-        for (pawnPosition = pawn+1; knightSquareHorizontal != (pawnPosition-2); pawnPosition++){
+        for (PawnDistance = pawn+1; knightSquareHorizontal != (PawnDistance-2); PawnDistance++){
             knightSquareHorizontal = knightSquareHorizontal + 2;
             if (knightSquareVertical == 0){
                 knightSquareVertical++;
@@ -22,10 +22,12 @@ public class CodeWars {
             }
         } if (knightSquareVertical==1){
             String colorSquare = "White";
+            return new PawnDistance();
         } else {
             String colorSquare = "Black";
-        }
             return new PawnDistance();
+        }
+
     }
 }
 

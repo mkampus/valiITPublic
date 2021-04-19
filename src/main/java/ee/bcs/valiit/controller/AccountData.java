@@ -37,4 +37,6 @@ public class AccountData {
     public void setLocked(boolean locked) {
         this.locked = locked;
     }
+
 }
+
