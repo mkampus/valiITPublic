@@ -60,9 +60,12 @@ public class BankService {
         return bankRepository.showIfBlocked(accountNr);
     }
 
-    public String accountUnblock(String accountNumber){
+    public void accountUnblock(String accountNumber){
         bankRepository.accountUnblock(accountNumber);
-        return "Unblocked.";
+    }
+
+    public void accountBlock (String accountNumber){
+        bankRepository.accountBlock(accountNumber);
     }
 
 }

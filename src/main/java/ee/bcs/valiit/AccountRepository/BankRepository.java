@@ -55,6 +55,14 @@ public class BankRepository {
         paramMap.put("dbBlocked", dbValue);
         jdbcTemplate.update(sql, paramMap);
     }
+    public void accountBlock (String accountNumber){
+        String sql = "UPDATE accounts SET block = :dbBlocked WHERE account_number = :dbAccountNumber";
+        Map<String,Object> paramMap = new HashMap <>();
+        paramMap.put("dbAccountNumber", accountNumber);
+        Boolean dbValue = true;
+        paramMap.put("dbBlocked", dbValue);
+        jdbcTemplate.update(sql, paramMap);
+    }
 
 
 //    public Double deposit(String accountNumber, Double deposit) {

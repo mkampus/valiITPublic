@@ -4,9 +4,7 @@ package ee.bcs.valiit.controller;
 import ee.bcs.valiit.BankService.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
@@ -39,7 +37,7 @@ public class BankController {
     public String getBalance(@PathVariable("accountNumber") String accountNumber) {
         if (bankService.checkedBlock(accountNumber)) {
             return "Your account is blocked";
-        } else{
+        } else {
             AccountData getBalanceRequest = accountBalanceMap.get(accountNumber);
             double Balance = bankService.getBalance(accountNumber);
             return "Your balance is: " + Balance;
@@ -65,17 +63,22 @@ public class BankController {
     }
 
 
-    // TODO 5
-// Add command: "transfer ${fromAccount} ${toAccount} ${amount}
-// This has to remove specified amount from fromAccount and add it to toAccount
-// Your application needs to check that toAccount is positive
-// And from account has enough money to do that transaction
     @GetMapping("transfer/{fromAccount}/{amount}/{toAccount}")
     public String TransferMoney(@PathVariable("fromAccount") String accountNumber,
                                 @PathVariable("amount") double amountToTransfer,
                                 @PathVariable("toAccount") String toAccount) {
         return bankService.transfer(accountNumber, amountToTransfer, toAccount);
     }
+
+//    @PutMapping("account/block")
+//    public String BlockAccount(@RequestBody AccountData accountDetails) {
+//        String accountNr = accountDetails.getAccountNumber();
+//        if (bankService.checkedBlock(accountNr)) {
+//            return "The account is already blocked.";
+//        }
+//        bankService.accountBlock(accountNr);
+//        return "The account has been blocked.";
+//    }
 
     //
 //    //

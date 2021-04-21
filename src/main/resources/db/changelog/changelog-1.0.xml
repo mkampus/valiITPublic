@@ -4,13 +4,13 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="1" author="mart">
+    <changeSet id="1st change 11:31, 21.04.21" author="mart">
         <createTable tableName="accounts">
             <column name="id" type="int" autoIncrement="true">
-                <constraints unique="true" primaryKey="true"/>
+                <constraints unique="true"/>
             </column>
             <column name="account_number" type="text">
-                <constraints unique="true"/>
+                <constraints unique="true" primaryKey="true"/>
             </column>
             <column name="name" type="text"/>
             <column name="balance" type="numeric"/>
