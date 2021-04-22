@@ -1,6 +1,8 @@
 package ee.bcs.valiit.BankService;
 
 import ee.bcs.valiit.AccountRepository.BankRepository;
+import ee.bcs.valiit.hibernate.HibernateAccount;
+import ee.bcs.valiit.hibernate.HibernateAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,9 @@ public class BankService {
     private BankRepository bankRepository;
 
     @Autowired
+    private HibernateAccountRepository HibernateAccountRepository;
+
+    @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public void createAccount(String accountNr, Double balance, String name) {
@@ -19,8 +24,8 @@ public class BankService {
     }
 
     public double getBalance(String accountNr) {
-
-        return bankRepository.getBalance(accountNr);
+     return HibernateAccountRepository.getOne(accountNr).getBalance(); //fancy hibernate meetod
+     // return bankRepository.getBalance(accountNr); //- vana sql meetod
     }
 
     public Double putDeposit(String accountNr, Double deposit) {
@@ -60,11 +65,11 @@ public class BankService {
         return bankRepository.showIfBlocked(accountNr);
     }
 
-    public void accountUnblock(String accountNumber){
+    public void accountUnblock(String accountNumber) {
         bankRepository.accountUnblock(accountNumber);
     }
 
-    public void accountBlock (String accountNumber){
+    public void accountBlock(String accountNumber) {
         bankRepository.accountBlock(accountNumber);
     }
 
