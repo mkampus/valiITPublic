@@ -1,10 +1,10 @@
-package ee.bcs.valiit.solution.exception;
+package ee.bcs.valiit.solution.errorsexception;
 
-public class SampleErrorResponse {
+public class ErrorResponse {
     private String message;
     private Integer code;
 
-    public SampleErrorResponse(String message, Integer code) {
+    public ErrorResponse(String message, Integer code) {
         this.message = message;
         this.code = code;
     }

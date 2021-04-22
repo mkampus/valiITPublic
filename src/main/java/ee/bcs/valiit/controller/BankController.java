@@ -35,13 +35,11 @@ public class BankController {
 
     @GetMapping("getbalance/{accountNumber}")
     public String getBalance(@PathVariable("accountNumber") String accountNumber) {
-        if (bankService.checkedBlock(accountNumber)) {
-            return "Your account is blocked";
-        } else {
+
             AccountData getBalanceRequest = accountBalanceMap.get(accountNumber);
             double Balance = bankService.getBalance(accountNumber);
             return "Your balance is: " + Balance;
-        }
+
     }
 
     @GetMapping("deposit/{accountNumber}/{depositAmount}")

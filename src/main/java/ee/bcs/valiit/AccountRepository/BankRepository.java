@@ -1,5 +1,6 @@
 package ee.bcs.valiit.AccountRepository;
 
+import ee.bcs.valiit.solution.errorsexception.ApplicationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -23,11 +24,14 @@ public class BankRepository {
     }
 
     public double getBalance(String accountNr) {
+        if (showIfBlocked(accountNr)) {
+            throw new ApplicationException("Your account is blocked.");
+        } else {
         String sql = "SELECT balance FROM accounts WHERE account_number=:dbAccNo";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("dbAccNo", accountNr);
         double dbBalance = jdbcTemplate.queryForObject(sql, paramMap, Double.class);
-        return dbBalance;
+        return dbBalance;}
     }
 
     public Double update (String accountNr, Double amount){
