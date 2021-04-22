@@ -27,14 +27,15 @@ public class BankRepository {
         if (showIfBlocked(accountNr)) {
             throw new ApplicationException("Your account is blocked.");
         } else {
-        String sql = "SELECT balance FROM accounts WHERE account_number=:dbAccNo";
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("dbAccNo", accountNr);
-        double dbBalance = jdbcTemplate.queryForObject(sql, paramMap, Double.class);
-        return dbBalance;}
+            String sql = "SELECT balance FROM accounts WHERE account_number=:dbAccNo";
+            Map<String, Object> paramMap = new HashMap<>();
+            paramMap.put("dbAccNo", accountNr);
+            double dbBalance = jdbcTemplate.queryForObject(sql, paramMap, Double.class);
+            return dbBalance;
+        }
     }
 
-    public Double update (String accountNr, Double amount){
+    public Double update(String accountNr, Double amount) {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("dbAccNo", accountNr);
         paramMap.put("dbAmount", amount);
@@ -43,25 +44,26 @@ public class BankRepository {
         return amount;
     }
 
-    public Boolean showIfBlocked (String accNo){
+    public Boolean showIfBlocked(String accNo) {
         String sql = "SELECT block FROM accounts WHERE account_number = :dbAccountNumber";
-        Map<String,Object> paramMap = new HashMap <>();
+        Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("dbAccountNumber", accNo);
         Boolean blocked = jdbcTemplate.queryForObject(sql, paramMap, Boolean.class);
         return blocked;
     }
 
-    public void accountUnblock (String accountNumber){
+    public void accountUnblock(String accountNumber) {
         String sql = "UPDATE accounts SET block = :dbBlocked WHERE account_number = :dbAccountNumber";
-        Map<String,Object> paramMap = new HashMap <>();
+        Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("dbAccountNumber", accountNumber);
         Boolean dbValue = false;
         paramMap.put("dbBlocked", dbValue);
         jdbcTemplate.update(sql, paramMap);
     }
-    public void accountBlock (String accountNumber){
+
+    public void accountBlock(String accountNumber) {
         String sql = "UPDATE accounts SET block = :dbBlocked WHERE account_number = :dbAccountNumber";
-        Map<String,Object> paramMap = new HashMap <>();
+        Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("dbAccountNumber", accountNumber);
         Boolean dbValue = true;
         paramMap.put("dbBlocked", dbValue);
