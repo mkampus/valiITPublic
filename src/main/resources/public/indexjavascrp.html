@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Min</h1>
+a: <input id="minA"> b: <input id="minB">
+<button id="minButton">Min</button>
+<p>
+    Vastus on: <span id="minAnswer"></span>
+</p>
+<script>
+    let minA = document.getElementById("minA");
+    let minB = document.getElementById("minB");
+    let minButton = document.getElementById("minButton");
+    minButton.onclick = function () {
+        let minAnswer = document.getElementById("minAnswer");
+        let a = minA.value;
+        let b = minB.value;
+        if (Number(a) < Number(b)) {
+            minAnswer.innerText = a;
+        } else {
+            minAnswer.innerText = b;
+        }
+    }
+</script>
+
+<h2>Max</h2>
+a: <input id="maxA"> b: <input id="maxB">
+<button id="maxButton">Max</button>
+<p>
+    Vastus on: <span id="maxAnswer"></span>
+</p>
+<script>let maxA = document.getElementById("maxA");
+let maxB = document.getElementById("maxB");
+let maxButton = document.getElementById("maxButton");
+maxButton.onclick = function () {
+    let maxAnswer = document.getElementById("maxAnswer");
+    let a = maxA.value;
+    let b = maxB.value;
+    if (Number(a) > Number(b)) {
+        maxAnswer.innerText = a;
+    } else {
+        maxAnswer.innerText = b;
+    }
+}
+</script>
+
+<h3>Absoluut</h3>
+a: <input id="absA">
+<button id="absButton">Absolut</button>
+<p>Vastus on:<span id="absAnswer"></span> </p>
+<script>let absA = document.getElementById("absA");
+    let absButton = document.getElementById("absButton");
+    absButton.onclick = function (){
+        let absAnswer = document.getElementById("absAnswer")
+        let a = absA.value;
+        if (Number(a) < Number(0)) {
+            absAnswer.innerText = a * -1;
+        } else {
+            absAnswer.innerText = a;
+        }
+
+    }
+</script>
+
+<h4>isEven</h4>
+a: <input id="isEvenA">
+    <button id="evenButton">IsEVen</button>
+    <p>Vastus on:<span id="isEvenAnswer"></span> </p>
+    <script>let isEvenA = document.getElementById("isEvenA");
+        let evenButton = document.getElementById("evenButton");
+    evenButton.onclick = function (){
+            let isEvenAnswer = document.getElementById("isEvenAnswer")
+            let a = isEvenA.value;
+            if (Number(a) % 2 == Number(0)) {
+                isEvenAnswer.innerText = "Is Even";
+        } else {
+                isEvenAnswer.innerText = "Is Not Even";
+        }
+
+        }
+</script>
+
+</body>
+</html>

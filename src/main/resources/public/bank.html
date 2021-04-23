@@ -4,12 +4,39 @@
     <meta charset="UTF-8">
     <title>MardiBank!</title>
 <link rel="stylesheet" href="css/style.css">
-    <body>MardiBank! Intressid algavad 100'st protsendist vms. Ma ei tea kuidas pangad töötavad.</body>
+    <img src="https://mmkampus.ee/wp-content/uploads/2021/04/Rabbit-space.jpg" alt="Usalda meid">
+    <body>MardiBank! Intressid algavad 5'st protsendist või mida iganes</body>
+
+
     <body><h2>Loo konto!</h2></body>
+
 <body><h2>Kontoväljavõte!</h2></body>
+</script>
+
+<h3>Kontoväljavõte!</h3>
+a: <input id="accNo">
+<button id="accNoButton">Insert your account number.</button>
+<p>Vastus on:<span id="absAnswer"></span> </p>
+<script>let accNo = document.getElementById("accNo");
+let accNoButton = document.getElementById("accNoButton");
+accNoButton.onclick = function (){
+    let absAnswer = document.getElementById("absAnswer")
+    let a = accNo.value;
+    if (Number(a) < Number(0)) {
+        absAnswer.innerText = a * -1;
+    } else {
+        absAnswer.innerText = a;
+    }
+
+}
+</script>
+
 <body><h2>Pane raha enda kontole!</h2></body>
+
 <body><h2>Võta raha kontolt välja!</h2></body>
+
 <body><h2>Vii raha ühelt kontolt teisele!</h2></body>
+
 <body><h2>Lahku siit ilmast!</h2></body>
 
 </head>
