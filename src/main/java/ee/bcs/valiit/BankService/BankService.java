@@ -17,6 +17,8 @@ public class BankService {
 
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
+//
+//    public list <HibernateAccount>
 
     public void createAccount(String accountNr, Double balance, String name) {
         bankRepository.createAccount(accountNr, balance, name);

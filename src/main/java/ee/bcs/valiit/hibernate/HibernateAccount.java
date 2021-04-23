@@ -10,7 +10,18 @@ public class HibernateAccount {
 
     @Id
     private String account_number;
+
     private Double balance;
+
+    private Boolean block;
+
+    public Boolean getBlock() {
+        return block;
+    }
+
+    public void setBlock(Boolean block) {
+        this.block = block;
+    }
 
     public void setAccountNumber(String accountNumber) {
         this.account_number = accountNumber;
