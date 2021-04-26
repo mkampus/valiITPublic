@@ -9,6 +9,26 @@
 <h2> Loo konto</h2>
 <input id="accountNumber">
 <button id="createAccountButton">Loo konto</button>
+<script>
+let accountNumber = document.getElementById("accountNumber");
+let accountOwnerName = document.getElementById("accountOwnerName");
+let balance = document.getElementById("createAccountButton");
+depositButton.onclick= function (){
+    let configuration = {
+        method: 'GET'
+    }
+    fetch("http://localhost:8080/createaccount/" + accountNumber.value + "/" + accountOwnerName, configuration)
+    .then(response => response.text())
+    .then(function (response) {
+        alert(response)
+    })
+
+}
+</script>
+
+
+
+
 <button id="getBalanceButton">Küsi balanss</button>
 
 <script>

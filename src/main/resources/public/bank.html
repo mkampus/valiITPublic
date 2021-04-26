@@ -8,34 +8,132 @@
     <body>MardiBank! Intressid algavad 5'st protsendist või mida iganes</body>
 
 
-    <body><h2>Loo konto!</h2></body>
 
-<body><h2>Kontoväljavõte!</h2></body>
+<h2> Loo konto</h2>
+<label>Insert account number:</label><input id="accountNumber">
+<label>Insert your name:</label><input id="ownerName">
+<button id="createAccountButton">Loo konto</button>
+<script>
+    let accountNumber = document.getElementById("accountNumber");
+    let ownerName = document.getElementById("ownerName");
+    let createAccountButton = document.getElementById("createAccountButton");
+    createAccountButton.onclick= function (){
+        let configuration = {
+            'accountNumber': accountNumber.value,
+            'ownerName': ownerName.value
+            // method: 'GET'
+        }
+        fetch("http://localhost:8080/createaccount/" + accountNumber.value + "/" + ownerName.value)
+            .then(response => response.text())
+            .then(function (response) {
+                alert(response)
+            })
+
+    }
 </script>
 
+
+
+
 <h3>Kontoväljavõte!</h3>
-a: <input id="accNo">
-<button id="accNoButton">Insert your account number.</button>
-<p>Vastus on:<span id="absAnswer"></span> </p>
-<script>let accNo = document.getElementById("accNo");
+Insert account number: <input id="accNo">
+<button id="accNoButton">View your balance!</button>
+<p>Your balance is:<span id="balance"></span> </p>
+<script>
 let accNoButton = document.getElementById("accNoButton");
+let accNo = document.getElementById("accNo");
 accNoButton.onclick = function (){
-    let absAnswer = document.getElementById("absAnswer")
-    let a = accNo.value;
-    if (Number(a) < Number(0)) {
-        absAnswer.innerText = a * -1;
-    } else {
-        absAnswer.innerText = a;
+    let getBalanceButton = document.getElementById("accNoButton");
+    getBalanceButton.onclick = function () {
+        let requestObject = {
+            'accountNumber': accNo.value,
+            'balance': 0
+        }
+        fetch("http://localhost:8080/getbalance/" + accNo.value)
+            .then(response => response.text())
+
+            .then(function(response){ // selle asemel ma võiksin kirjutada response => alert(response)
+                alert(response)
+            })
     }
+
+
 
 }
 </script>
 
-<body><h2>Pane raha enda kontole!</h2></body>
+<body><h3>Deposit moneys!</h3></body>
+<label>Insert account number:</label><input id="depositAccountNumber">
+<label>Insert deposit amount:</label><input id="deposit">
+<button id="depositButton">Deposit amount.</button>
+<script>
+    let depositAccountNumber = document.getElementById("depositAccountNumber");
+    let deposit = document.getElementById("deposit");
+    let depositButton = document.getElementById("depositButton");
+    depositButton.onclick= function (){
+        let configuration = {
+            'accountNumber': depositAccountNumber.value,
+            'depositAmount': deposit.value
+            // method: 'GET'
+        }
+        fetch("http://localhost:8080/deposit/" + depositAccountNumber.value + "/" + deposit.value)
+            .then(response => response.text())
+            .then(function (response) {
+                alert(response)
+            })
 
-<body><h2>Võta raha kontolt välja!</h2></body>
+    }
+</script>
 
-<body><h2>Vii raha ühelt kontolt teisele!</h2></body>
+
+<body><h2>Withdraw moneys!</h2></body>
+<label>Insert account number:</label><input id="withdrawAccountNumber">
+<label>Insert the amount you wish to withdraw:</label><input id="withdrawAmount">
+<button id="withdrawAmountButton">Withdraw.</button>
+<script>
+    let withdrawAccountNumber = document.getElementById("withdrawAccountNumber");
+    let withdrawAmount = document.getElementById("withdrawAmount");
+    let withdrawAmountButton = document.getElementById("withdrawAmountButton");
+    withdrawAmountButton.onclick= function (){
+        let configuration = {
+            'accountNumber': withdrawAccountNumber.value,
+            'withdrawAmount': withdrawAmount.value
+            // method: 'GET'
+        }
+        fetch("http://localhost:8080/withdraw/" + withdrawAccountNumber.value + "/" + withdrawAmount.value)
+            .then(response => response.text())
+            .then(function (response) {
+                alert(response)
+            })
+
+    }
+</script>
+<body><h2>Transfer moneys!</h2></body>
+<label>Insert the account number from which you wish to transfer:</label><input id="fromAccount">
+<label>Insert the amount you wish to transfer:</label><input id="amount">
+<label>Insert the account number to which you wish to transfer:</label><input id="toAccount">
+<button id="amountButton">Transfer.</button>
+<script>
+    let fromAccount = document.getElementById("fromAccount");
+    let toAccount = document.getElementById("toAccount")
+    let amountToTransfer = document.getElementById("amount");
+    let amountButton = document.getElementById("amountButton");
+    amountButton.onclick= function (){
+        let configuration = {
+            'fromAccount': fromAccount.value,
+            'amount': amountToTransfer.value,
+            'toAccount' : toAccount.value
+            // method: 'GET'
+        }
+        fetch("http://localhost:8080/transfer/" + fromAccount.value + "/" + amountToTransfer.value + "/" + toAccount.value)
+            .then(response => response.text())
+            .then(function (response) {
+                alert(response)
+            })
+
+    }
+</script>
+
 
 <body><h2>Lahku siit ilmast!</h2></body>
 

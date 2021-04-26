@@ -21,7 +21,7 @@ public class BankController {
     @Autowired
     private BankService bankService;
 
-
+    @CrossOrigin
     @GetMapping("createaccount/{accountNumber}/{name}")
     public String createAccount(@PathVariable("accountNumber") String accountNumber,
                                 @PathVariable("name") String ownerName) {
@@ -32,7 +32,7 @@ public class BankController {
                 "Account number is: " + accountNumber; //also locked = false
     }
 
-
+    @CrossOrigin
     @GetMapping("getbalance/{accountNumber}")
     public String getBalance(@PathVariable("accountNumber") String accountNumber) {
 
@@ -41,7 +41,7 @@ public class BankController {
             return "Your balance is: " + Balance;
 
     }
-
+    @CrossOrigin
     @GetMapping("deposit/{accountNumber}/{depositAmount}")
     public String putDepositWeb(@PathVariable("accountNumber") String accountNumber,
                                 @PathVariable("depositAmount") double deposit) {
@@ -50,7 +50,7 @@ public class BankController {
         return "Your money has been deposited. Your balance is: " + newBalance;
     }
 
-
+    @CrossOrigin
     @GetMapping("withdraw/{accountnumber}/{withdrawAmount}")
     public String WithdrawMoney(@PathVariable("accountnumber") String accountNumber,
                                 @PathVariable("withdrawAmount") double withdrawAmount) {
@@ -60,7 +60,7 @@ public class BankController {
                 "  your new balance is: " + balance;
     }
 
-
+    @CrossOrigin
     @GetMapping("transfer/{fromAccount}/{amount}/{toAccount}")
     public String TransferMoney(@PathVariable("fromAccount") String accountNumber,
                                 @PathVariable("amount") double amountToTransfer,
