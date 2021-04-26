@@ -26,12 +26,22 @@ public class BankService {
 
 
     public void createAccount(String accountNr, Double balance, String name) {
-        bankRepository.createAccount(accountNr, balance, name);
+        try {
+            bankRepository.createAccount(accountNr, balance, name);
+        } catch (Exception e1){
+            throw new ApplicationException("Account already exists!");
+        }
+
 //        bankRepository.accountUnblock(accountNr);
     }
 
     public double getBalance(String accountNr) {
-        return HibernateAccountRepository.getOne(accountNr).getBalance(); //fancy hibernate meetod
+        try {
+            return HibernateAccountRepository.getOne(accountNr).getBalance(); //fancy hibernate meetod
+        } catch (Exception e2){
+            throw new ApplicationException("No such account exists!");
+        }
+
         // return bankRepository.getBalance(accountNr); //- vana sql meetod
     }
 

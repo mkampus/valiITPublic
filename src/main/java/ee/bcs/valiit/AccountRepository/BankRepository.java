@@ -55,6 +55,18 @@ public class BankRepository {
         return blocked;
     }
 
+//    public Boolean showIfAccountAlreadyExists(String accNo) {
+//        String sql = "SELECT account_number FROM accounts WHERE account_number = :dbAccountNumber";
+//        Map<String, Object> paramMap = new HashMap<>();
+//        paramMap.put("dbAccountNumber", accNo);
+//        String presentAccNr = jdbcTemplate.queryForObject(sql, paramMap, String.class);
+//        if (presentAccNr == accNo){
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
+
     public void accountUnblock(String accountNumber) {
         String sql = "UPDATE accounts SET block = :dbBlocked WHERE account_number = :dbAccountNumber";
         Map<String, Object> paramMap = new HashMap<>();
