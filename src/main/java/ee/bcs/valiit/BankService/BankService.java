@@ -1,8 +1,8 @@
 package ee.bcs.valiit.BankService;
 
 import ee.bcs.valiit.AccountRepository.BankRepository;
-import ee.bcs.valiit.hibernate.HibernateAccount;
-import ee.bcs.valiit.hibernate.HibernateAccountRepository;
+import ee.bcs.valiit.hibernate.AccountEntity;
+import ee.bcs.valiit.hibernate.HibernateRepository;
 import ee.bcs.valiit.solution.errorsexception.ApplicationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -16,19 +16,19 @@ public class BankService {
     private BankRepository bankRepository;
 
     @Autowired
-    private HibernateAccountRepository HibernateAccountRepository;
+    private HibernateRepository HibernateAccountRepository;
 
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
     //
 
-    public List<HibernateAccount> notBlockedList;
+    public List<AccountEntity> notBlockedList;
 
 
     public void createAccount(String accountNr, Double balance, String name) {
         try {
             bankRepository.createAccount(accountNr, balance, name);
-        } catch (Exception e1){
+        } catch (Exception e1) {
             throw new ApplicationException("Account already exists!");
         }
 
@@ -38,7 +38,7 @@ public class BankService {
     public double getBalance(String accountNr) {
         try {
             return HibernateAccountRepository.getOne(accountNr).getBalance(); //fancy hibernate meetod
-        } catch (Exception e2){
+        } catch (Exception e2) {
             throw new ApplicationException("No such account exists!");
         }
 
@@ -46,12 +46,25 @@ public class BankService {
     }
 
     public Double putDeposit(String accountNr, Double deposit) {
-        if (bankRepository.getBalance(accountNr) < 0){
+        if (bankRepository.getBalance(accountNr) < 0) {
             throw new ApplicationException("Cannot deposit a negative amount");
-        }
+        } else {
+//            double oldBalance = HibernateAccountRepository.getOne(accountNr).getBalance();
+//            double newBalance = HibernateAccountRepository.getOne(accountNr).setBalance(oldBalance+deposit);
+
+            return bankRepository.update(accountNr, getBalance(accountNr) + deposit);
+        } //return         //bankRepository.update(accountNr, getBalance(accountNr) + deposit);
 //        HibernateAccount account = HibernateAccountRepository.getOne(accountNr);
-//        Double balance = account.getBalance() +
-        return bankRepository.update(accountNr, bankRepository.getBalance(accountNr) + deposit);
+//        Double balance = account.getBalance() +'
+
+//        double newBalance = getBalance(accountNr) + deposit;
+//        HibernateAccountRepository.getOne(accountNr).setBalance(9.0);
+//        return newBalance;
+
+
+
+//
+//
 
     }
 

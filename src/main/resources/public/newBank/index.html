@@ -93,10 +93,10 @@
                     let getBalanceButton = document.getElementById("accNoButton");
                     let balance = document.getElementById("balance");
                     getBalanceButton.onclick = function () {
-                        let requestObject = {
-                            'accountNumber': accNo.value,
-                            'balance': 0
-                        }
+                        // let requestObject = {
+                        //     'accountNumber': accNo.value,
+                        //     'balance': 0
+                        // }
                         fetch("http://localhost:8080/getbalance/" + accNo.value)
                             .then(response => response.text())
                             .then(function (response) {// selle asemel ma võiksin kirjutada response => alert(response)

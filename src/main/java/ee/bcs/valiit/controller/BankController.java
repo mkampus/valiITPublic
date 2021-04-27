@@ -46,7 +46,6 @@ public class BankController {
     public String putDepositWeb(@PathVariable("accountNumber") String accountNumber,
                                 @PathVariable("depositAmount") double deposit) {
         double newBalance = bankService.putDeposit(accountNumber, deposit);
-
         return "Your money has been deposited. Your balance is: " + newBalance;
     }
 

@@ -4,26 +4,25 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table (name = "accounts")
+@Table(name="accounts")
 @Entity
 public class HibernateAccount {
+    // Juhul kui on auto increment id tulp
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Integer id;
 
+    // andmebaasis peab olema tulba nimi: account_number
     @Id
     private String account_number;
 
     private Double balance;
 
-    private Boolean block;
-
-    public Boolean getBlock() {
-        return block;
+    public String getAccount_number() {
+        return account_number;
     }
 
-    public void setBlock(Boolean block) {
-        this.block = block;
-    }
-
-    public void setAccountNumber(String accountNumber) {
+    public void setAccount_number(String accountNumber) {
         this.account_number = accountNumber;
     }
 
@@ -33,9 +32,5 @@ public class HibernateAccount {
 
     public void setBalance(Double balance) {
         this.balance = balance;
-    }
-
-    public String getAccountNumber(){
-        return account_number;
     }
 }
